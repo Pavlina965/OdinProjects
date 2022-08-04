@@ -1,0 +1,54 @@
+.Content{
+    width:250px;
+    margin: 10% auto;
+
+}
+.Display{
+    height: 40px;
+    font-size: 30px;
+    display: flex;
+    width: auto;
+    background-color: rgb(203, 193, 222);
+    color: white;
+    justify-content: flex-end;
+}
+.Buttons{
+    display: flex;
+    max-height: 25%;
+    flex-direction: row-reverse;
+
+
+}
+.Operators{
+    display: flex;
+    flex-direction: column;
+
+}
+.Operators button{
+    height: 30px;
+    width: 50px;
+    cursor: pointer;
+
+}
+.Numbers{
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.Numbers button{
+    display: flex;
+    height: 60px;
+    flex-basis: 33.33333%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+
+}
+#zeroBtn{
+    flex-grow: 3;
+}
+#equals{
+    flex-grow: 2;
+}
