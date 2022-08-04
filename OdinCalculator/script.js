@@ -9,10 +9,13 @@ const buttons = document.querySelectorAll('.Number,.Operator')
 const display = document.getElementById('magic');
 let btnNum;
 let btnOper;
-let num1
-let num2
-let numChosed = false
-let operatorChosed = false
+let num1;
+let num2;
+let result;
+let operator;
+let numChosed = false;
+let operatorChosed = false;
+let isResult = false;
 let displayNum = ""
 let displayOper = ""
 
@@ -21,53 +24,78 @@ function assignNumber(button) {
     btnOper = button.getAttribute('data-oper')
     const btnClass = button.className;
     if (numChosed === false && operatorChosed === false && btnClass === 'Number') {
-        displayNum += btnNum
-        num1 = parseInt(displayNum)
-        //console.log(num1)
-        display.textContent = num1
+        if (!isResult) {
+            displayNum += btnNum
+            num1 = parseInt(displayNum)
+            //console.log(num1)
+            display.textContent = num1
+            console.log(isResult + "1")
+        }
+
         //
     }
     if (/*operatorChosed === false &&*/ btnClass === 'Operator') {
         //console.log(btnOper)
         operatorChosed = true;
+        operator = btnOper;
         //console.log(btnOper)
         if (num1 != null) {
             numChosed = true;
             displayNum = ''
         }
     }
-    if (numChosed && btnClass === 'Number') {
+    if (numChosed && btnClass === 'Number' && !isResult) {
         displayNum += btnNum
         num2 = parseInt(displayNum)
         //console.log(displayNum)
         display.textContent = num2
-    }
-    console.log(btnOper)
 
+    }
 }
 
 function equals() {
-    if (numChosed && operatorChosed) {
-        console.log(num1)
-        console.log(num2)
-        console.log(btnOper)
-        /*switch (btnOper) {
+    if (numChosed && operatorChosed && !isResult) {
+        switch (operator) {
             case '+':
-                displayNum = num1 + num2
+                result = num1 + num2
+                displayNum = result
                 console.log(displayNum)
+                isResult = true;
+                num2='';
+                num1=result;
+                operatorChosed = false
+                display.textContent=displayNum
                 break
             case '-':
-                displayNum = num1 - num2
+                result = num1 - num2
+                displayNum = result
                 console.log(displayNum)
+                isResult = true;
+                num2='';
+                num1=result;
+                operatorChosed = false
+                display.textContent=displayNum
                 break
             case '*':
-                displayNum = num1 * num2
+                result = num1 * num2
+                displayNum = result
                 console.log(displayNum)
+                isResult = true;
+                num2='';
+                num1=result;
+                operatorChosed = false
+                display.textContent=displayNum
                 break
             case '/':
-                displayNum = num1 / num2
+                result = num1 / num2
+                displayNum = result
                 console.log(displayNum)
-        }*/
+                isResult = true;
+                num2='';
+                num1=result;
+                operatorChosed = false
+                display.textContent=displayNum
+        }
     } else {
         console.log('NO!')
     }
