@@ -35,7 +35,7 @@ function assemble(button) {
     }
     if (numChosed && operatorChosed && btnClass === 'Number') {
         displayNum += btnNum
-        num2 = parseInt(displayNum)
+        num2 = (displayNum)
         display.textContent = num2
 
     }
@@ -46,48 +46,33 @@ function equals() {
     if (operatorChosed) {
         switch (operator) {
             case '+':
-                result = num1 + num2
-                console.log(result)
-                display.textContent = result
-                num1 = result
-                num2 = ''
-                displayNum = ''
-                operatorChosed = false
-                numChosed = false
+                result = num1 + num2;
+                defaultSetup(result);
                 break
             case '-':
-                result = num1 - num2
-                console.log(result)
-                display.textContent = result
-                num1 = result
-                num2 = ''
-                displayNum = ''
-                operatorChosed = false
-                numChosed = false
+                result = num1 - num2;
+                defaultSetup(result);
                 break
             case '*':
-                result = num1 * num2
-                console.log(result)
-                display.textContent = result
-                num1 = result
-                num2 = ''
-                displayNum = ''
-                operatorChosed = false
-                numChosed = false
+                result = num1 * num2;
+                defaultSetup(result);
                 break
             case '/':
-                result = num1 / num2
-                console.log(result)
-                display.textContent = result
-                num1 = result
-                num2 = ''
-                displayNum = ''
-                operatorChosed = false
-                numChosed = false
+                result = num1 / num2;
+                defaultSetup(result);
         }
     } else {
-        console.log('NO!')
+        console.log('NO!');
     }
+}
+function defaultSetup(result)
+{
+    display.textContent = result
+    num1 = result
+    num2 = ''
+    displayNum = ''
+    operatorChosed = false
+    numChosed = false
 }
 
 function clear() {
