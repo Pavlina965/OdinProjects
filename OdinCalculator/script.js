@@ -104,21 +104,29 @@ function clear() {
 function del() {
     let deletedNum
     displayNum = ''
-    if (numChosed && !isNaN(num2)) {
+    if (numChosed) {
         deletedNum = num2.toString();
         deletedNum = deletedNum.toString()
         deletedNum = deletedNum.slice(0, -1)
         num2 = parseInt(deletedNum)
-
-        display.textContent = num2
-    } else if (!numChosed && !isNaN(num1)) {
+        if (isNaN(num2)){
+            display.textContent = 0
+        }
+        else {
+        display.textContent = num2}
+    } else{
 
         deletedNum = num1
         deletedNum = deletedNum.toString()
         deletedNum = deletedNum.slice(0, -1)
         num1 = parseInt(deletedNum)
-        display.textContent = num1
-    }
+
+        if (isNaN(num1)){
+            display.textContent = 0
+        }
+        else {
+            display.textContent = num1
+        }}
     //console.log(displayNum)
 }
 
