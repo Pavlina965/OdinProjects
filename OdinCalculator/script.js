@@ -13,23 +13,21 @@ let numChosed = false;
 let operatorChosed = false;
 let isResult = false;
 let displayNum = ""
-let displayOper = ""
 
 function assemble(button) {
-    btnNum = parseInt(button.getAttribute('data-num'));
+    btnNum = button.getAttribute('data-num');
     btnOper = button.getAttribute('data-oper')
     const btnClass = button.className;
     //console.log('chosed numbers '+numChosed,'chosed operator '+operatorChosed,'clicked = '+isResult)
     if (numChosed === false && operatorChosed === false && btnClass === 'Number') {
-            displayNum += btnNum
-            num1 = parseInt(displayNum)
-            display.textContent = num1
-        }
+        displayNum += btnNum
+        num1 = parseInt(displayNum)
+        display.textContent = num1
+    }
 
     if (btnClass === 'Operator') {
         operatorChosed = true;
         operator = btnOper;
-        console.log(operator)
         if (num1 != null) {
             numChosed = true;
             displayNum = ''
@@ -50,61 +48,85 @@ function equals() {
             case '+':
                 result = num1 + num2
                 console.log(result)
-                display.textContent =result
+                display.textContent = result
                 num1 = result
-                console.log(num2 + 'num2')
-                console.log(displayNum+'displaynum')
-                num2=''
+                num2 = ''
                 displayNum = ''
-                operatorChosed=false
+                operatorChosed = false
+                numChosed = false
                 break
             case '-':
                 result = num1 - num2
-                console.log(displayNum)
-                isResult = true;
-                num2 = '';
-                num1 = result;
+                console.log(result)
+                display.textContent = result
+                num1 = result
+                num2 = ''
+                displayNum = ''
                 operatorChosed = false
-                display.textContent = displayNum
+                numChosed = false
                 break
             case '*':
                 result = num1 * num2
-                displayNum = result
-                console.log(displayNum)
-                isResult = true;
-                num2 = '';
-                num1 = result;
+                console.log(result)
+                display.textContent = result
+                num1 = result
+                num2 = ''
+                displayNum = ''
                 operatorChosed = false
-                display.textContent = displayNum
+                numChosed = false
                 break
             case '/':
                 result = num1 / num2
-                displayNum = result
-                console.log(displayNum)
-                isResult = true;
-                num2 = '';
-                num1 = result;
+                console.log(result)
+                display.textContent = result
+                num1 = result
+                num2 = ''
+                displayNum = ''
                 operatorChosed = false
-                display.textContent = displayNum
+                numChosed = false
         }
     } else {
         console.log('NO!')
     }
 }
-function clear(){
-    num1=''
-    num2=''
-    operator=''
-    displayNum=''
-    display.textContent='0'
-    numChosed=false
-    isResult=false
-    operatorChosed=false
+
+function clear() {
+    num1 = ''
+    num2 = ''
+    operator = ''
+    displayNum = ''
+    display.textContent = '0'
+    numChosed = false
+    isResult = false
+    operatorChosed = false
 }
+
+function del() {
+    let deletedNum
+    displayNum = ''
+    if (numChosed && !isNaN(num2)) {
+        deletedNum = num2.toString();
+        deletedNum = deletedNum.toString()
+        deletedNum = deletedNum.slice(0, -1)
+        num2 = parseInt(deletedNum)
+
+        display.textContent = num2
+    } else if (!numChosed && !isNaN(num1)) {
+
+        deletedNum = num1
+        deletedNum = deletedNum.toString()
+        deletedNum = deletedNum.slice(0, -1)
+        num1 = parseInt(deletedNum)
+        display.textContent = num1
+    }
+    //console.log(displayNum)
+}
+
+btnDelete.addEventListener('click', () => del())
+btnClear.addEventListener('click', () => clear())
 btnEqual.addEventListener('click', () => equals())
 buttons.forEach(button => {
     button.addEventListener('click', () => {
         assemble(button)
     })
 })
-btnClear.addEventListener('click', ()=>clear())
