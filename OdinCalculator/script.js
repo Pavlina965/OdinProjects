@@ -20,9 +20,12 @@ function assemble(button) {
     const btnClass = button.className;
     //console.log('chosed numbers '+numChosed,'chosed operator '+operatorChosed,'clicked = '+isResult)
     if (numChosed === false && operatorChosed === false && btnClass === 'Number') {
+
+        decimalDot()
         displayNum += btnNum
-        num1 = parseInt(displayNum)
-        display.textContent = num1
+        console.log(displayNum)
+        num1 = parseFloat(displayNum)
+        display.textContent = displayNum
     }
 
     if (btnClass === 'Operator') {
@@ -32,11 +35,13 @@ function assemble(button) {
             numChosed = true;
             displayNum = ''
         }
+        display.textContent = num1 + operator
     }
     if (numChosed && operatorChosed && btnClass === 'Number') {
+        decimalDot()
         displayNum += btnNum
-        num2 = parseInt(displayNum)
-        display.textContent = num2
+        num2 = parseFloat(displayNum)
+        display.textContent = num1 + operator + num2
 
     }
 }
@@ -47,47 +52,33 @@ function equals() {
         switch (operator) {
             case '+':
                 result = num1 + num2
-                console.log(result)
-                display.textContent = result
-                num1 = result
-                num2 = ''
-                displayNum = ''
-                operatorChosed = false
-                numChosed = false
+                defCalc()
                 break
             case '-':
                 result = num1 - num2
-                console.log(result)
-                display.textContent = result
-                num1 = result
-                num2 = ''
-                displayNum = ''
-                operatorChosed = false
-                numChosed = false
+                defCalc()
                 break
             case '*':
                 result = num1 * num2
-                console.log(result)
-                display.textContent = result
-                num1 = result
-                num2 = ''
-                displayNum = ''
-                operatorChosed = false
-                numChosed = false
+                defCalc()
                 break
             case '/':
                 result = num1 / num2
-                console.log(result)
-                display.textContent = result
-                num1 = result
-                num2 = ''
-                displayNum = ''
-                operatorChosed = false
-                numChosed = false
+                defCalc()
         }
     } else {
         console.log('NO!')
     }
+}
+
+function defCalc() {
+    console.log(result)
+    display.textContent = result
+    num1 = result
+    num2 = ''
+    displayNum = ''
+    operatorChosed = false
+    numChosed = false
 }
 
 function clear() {
@@ -109,25 +100,35 @@ function del() {
         deletedNum = deletedNum.toString()
         deletedNum = deletedNum.slice(0, -1)
         num2 = parseInt(deletedNum)
-        if (isNaN(num2)){
-            display.textContent = 0
+        if (isNaN(num2)) {
+            display.textContent = num1 + operator;
+        } else {
+            display.textContent = num1 + operator + num2;
         }
-        else {
-        display.textContent = num2}
-    } else{
+    } else {
 
         deletedNum = num1
         deletedNum = deletedNum.toString()
         deletedNum = deletedNum.slice(0, -1)
         num1 = parseInt(deletedNum)
 
-        if (isNaN(num1)){
-            display.textContent = 0
+        if (isNaN(num1)) {
+            display.textContent = '0';
+        } else {
+            display.textContent = num1;
         }
-        else {
-            display.textContent = num1
-        }}
-    //console.log(displayNum)
+    }
+}
+
+function decimalDot() {
+    if (btnNum === '.') {
+        if (displayNum === '') {
+            displayNum = 0
+        }
+        if (display.textContent.includes('.')) {
+            btnNum = ''
+        }
+    }
 }
 
 btnDelete.addEventListener('click', () => del())
