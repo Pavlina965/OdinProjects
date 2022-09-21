@@ -18,7 +18,6 @@ function assemble(button) {
     btnNum = button.getAttribute('data-num');
     btnOper = button.getAttribute('data-oper')
     const btnClass = button.className;
-    //console.log('chosed numbers '+numChosed,'chosed operator '+operatorChosed,'clicked = '+isResult)
     if (numChosed === false && operatorChosed === false && btnClass === 'Number') {
 
         decimalDot()
@@ -29,6 +28,10 @@ function assemble(button) {
     }
 
     if (btnClass === 'Operator') {
+        if (!displayNum){
+            return
+        }
+        else{
         operatorChosed = true;
         operator = btnOper;
         if (num1 != null) {
@@ -37,6 +40,7 @@ function assemble(button) {
         }
         display.textContent = num1 + operator
     }
+        }
     if (numChosed && operatorChosed && btnClass === 'Number') {
         decimalDot()
         displayNum += btnNum
