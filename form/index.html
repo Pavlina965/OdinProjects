@@ -12,8 +12,12 @@
 
 <main>
     <div class="left">
+
         <div class="image">
-            <p>Photo by Vermeulen Job</p>
+            <p id="logo">LOGO</p>
+        </div>
+        <div class="author">
+            <p>Photo by: Vermeulen Job</p>
         </div>
     </div>
     <div class="right">
@@ -27,20 +31,24 @@
                 <input id="first-name" type="text">
                 <label for="last-name">Last Name</label>
                 <input id="last-name" type="text">
-                <label for="email">Email</label>
-                <input id="email" type="email">
+                <label for="password">Password</label>
+                <input type="password" class="password" required="required" id="password">
+
                 <label for="phone-number">Phone number</label>
                 <input id="phone-number">
-                <label for="password">Password</label>
-                <input id="password">
+                <label for="email">Email</label>
+                <input id="email" type="email">
                 <label for="confirm-password">Confirm password</label>
-                <input id="confirm-password">
+                <input type="password" class="password" required="required" id="confirm-password">
+                <div class="error-msg"></div>
             </form>
         </div>
         <div class="Border submit">
             <button form="my-form" type="submit">Submit</button>
         </div>
+        <p>Already have an account? <a href=#>Log In</a></p>
     </div>
 </main>
 </body>
+<script src="script.js"></script>
 </html>
