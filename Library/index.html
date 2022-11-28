@@ -31,17 +31,19 @@
     <div class="addBook">
         <h3>Add Book</h3>
         <form>
-            <span class="errorText"></span>
-            <input id="title" type="text" placeholder="Title">
-            <input id="author" type="text" placeholder="Author">
-            <input id="pages" type="number" placeholder="Number">
+            <span id="titleError" class="errorText"></span>
+            <input id="title" type="text"  placeholder="Title" required>
+            <span id="authorError" class="errorText"></span>
+            <input id="author" type="text"  placeholder="Author" required>
+            <span id="pagesError" class="errorText"></span>
+            <input id="pages" type="number"  placeholder="Number" required>
             <fieldset role="radiogroup">
                 <legend>Did you read it?</legend>
                 <label for="yes"> <input id="yes" type="radio" name="read" value="yes" checked=""><span>Yes</span></label>
                 <label for="no"> <input id="no" type="radio" name="read" value="no" checked=""><span>No</span></label>
             </fieldset>
             <div class="button-container">
-                <button id="addBook">Add book</button>
+                <button type="submit" id="addBook">Add book</button>
 
             </div>
         </form>
