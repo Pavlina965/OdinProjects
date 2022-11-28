@@ -80,21 +80,6 @@ function checkInput() {
         pagesError.textContent = "";
     }
 }
-const addRemoveButton = () =>{
-    const books = document.querySelectorAll('.Book')
-    books.forEach((book,index)=>{
-        const deleteData = document.createElement('td')
-        const deleteBtn = document.createElement('button')
-        deleteBtn.innerHTML = "Delete"
-        deleteBtn.addEventListener('click', ()=>{
-            myLibrary.splice(index, 1)
-        })
-        deleteData.appendChild(deleteBtn)
-        book.appendChild(deleteData)
-    })
-    //createLibrary()
-
-}
 
 function createLibrary() {
     const tbody = document.getElementById('tableBody');
@@ -109,6 +94,7 @@ function createLibrary() {
             switch (j) {
                 case 0:
                     bookInfo.textContent = myLibrary[i].title;
+                    //bookInfo.setAttribute('contenteditable',true)
                     break;
                 case 1:
                     bookInfo.textContent = myLibrary[i].author;
@@ -130,42 +116,29 @@ function createLibrary() {
 
         }
         const deleteData = document.createElement('td')
+        const editData = document.createElement('td')
+
+        const  editBtn = document.createElement('button')
+        editBtn.innerHTML = "Edit"
+        editBtn.addEventListener('click',()=>{
+            const books = document.querySelectorAll('Book-info')
+            books.forEach(book=>console.log('hi'))
+
+        })
+
         const deleteBtn = document.createElement('button')
         deleteBtn.innerHTML = "Delete"
         deleteBtn.addEventListener('click' ,()=>{
             myLibrary.splice(i,1)
             createLibrary()
         })
+        editData.appendChild(editBtn)
         deleteData.appendChild(deleteBtn)
+        row.appendChild(editData)
         row.appendChild(deleteData)
     }
 
-    //addRemoveButton()
 }
-
-
-//const bookRemove = document.createElement('td')
-//bookRemove.classList.add('Book', 'book-remove')
-//bookRemove.textContent = 'delete'
-//const bookEdit = document.createElement('td')
-//bookEdit.classList.add('Book', 'book-edit')
-//bookEdit.textContent = 'edit'
-//row.appendChild(bookEdit)
-//row.appendChild(bookRemove)
-
-
-
-
-//function removeBook() {
-//    const bookRemoveBtn = document.querySelectorAll('.book-remove')
-//    bookRemoveBtn.forEach(function callback(book, index) {
-//        book.addEventListener('click', () => {
-//            console.log(index)
-//            myLibrary.splice(index, 1)
-//            createLibrary()
-//        })
-//    })
-//}
 
 
 function updateTable() {
@@ -184,6 +157,3 @@ submitButton.addEventListener('click', () => {
     }
 
 })
-
-//document.addEventListener('change',updateTable)
-//createTable()
